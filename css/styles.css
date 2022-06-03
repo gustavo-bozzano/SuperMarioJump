@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Inconsolata', monospace;
 }
 
 .game-board {
@@ -37,6 +38,12 @@
     position: absolute;
     margin-top: 10vh;
     animation: clouds-anim 22s infinite linear;
+}
+
+.score {
+    text-align: right;
+    margin: 10px;
+    color: white;
 }
 
 @keyframes pipe-anim {

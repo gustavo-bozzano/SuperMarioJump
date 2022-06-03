@@ -1,15 +1,30 @@
-// TODO: Score e main menu
+// TODO: Fix som pulo, main menu e randomizar pipes (tubos)
 
+// Audios
+const marioDeath = document.getElementById('marioDeath');
+const marioJump = document.getElementById('marioJump');
+
+// Elementos
 const mario = document.querySelector('.mario');
 const pipe = document.querySelector('.pipe');
-const marioDeath = document.getElementById('marioDeath');
+
+// Mario esta vivo????
+let marioAlive = true;
+
+// Score
+let score = 0;
+const scoreDisplay = document.querySelector('.score-display');
 
 const jump = function () {
-    mario.classList.add('jump');
+    if (marioAlive == true) {
+        marioJump.play();
+        console.log('pulou');
+        mario.classList.add('jump');
 
-    setTimeout(function reset() {
-        mario.classList.remove('jump')
-    }, 500);
+        setTimeout(function reset() {
+            mario.classList.remove('jump')
+        }, 550);
+    }
 }
 
 const loop = setInterval(() => {
@@ -18,7 +33,6 @@ const loop = setInterval(() => {
     const marioPos = +window.getComputedStyle(mario).bottom.replace('px', '');
 
     if (pipePos <= 120 && pipePos > 0 && marioPos < 80) {
-
         pipe.style.animation = 'none';
         pipe.style.left = `${pipePos}px`;
 
@@ -29,8 +43,15 @@ const loop = setInterval(() => {
         mario.style.width = '75px';
         mario.style.marginLeft = '50px';
 
-        marioDeath.play(0);
+        marioDeath.play();
         clearInterval(loop);
+        return marioAlive = false;
+    }
+
+    while (marioAlive = true) {
+        score++;
+        scoreDisplay.innerHTML = `SCORE ${(score / 10).toFixed(0)}`;
+        break;
     }
 }, 10);
 
